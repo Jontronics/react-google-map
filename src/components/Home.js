@@ -15,12 +15,14 @@ class Home extends Component {
             <div className="sidebar" data-background-color="white" data-active-color="danger">
                 <Search />
             </div>
+            
             <div className="main-panel">
               <Nav />
                 
                 <div className="content">
                     <Results />
                 </div>      
+                
                 <Footer />      
             </div>
         </div>          

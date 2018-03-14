@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 
 export default (props) => {
+  //{id:1, key:'1', defaultAnimation:2, label: 'skate-board', position:{lat:40.7224017, lng:-73.9896719}},
+
+  const item = props.item
+  
   
   return (
     <div className="col-lg-3 col-sm-6">
@@ -14,8 +18,8 @@ export default (props) => {
                     </div>
                     <div className="col-xs-7">
                         <div className="numbers">
-                            <p>Capacity</p>
-                            105GB
+                            <p>{item.label}</p>
+                            ${item.price}
                         </div>
                     </div>
                 </div>
