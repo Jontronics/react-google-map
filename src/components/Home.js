@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Nav, Footer, Item, Map } from './presentation'
-import { Search } from './containers'
+import { Search, Results } from './containers'
 
 class Home extends Component {
   constructor(){
@@ -19,14 +19,7 @@ class Home extends Component {
               <Nav />
                 
                 <div className="content">
-                    <div className="container-fluid">
-                        <div className="row">  
-                            <Item />   
-                            <Item />  
-                            <Item />  
-                            <Item />                 
-                        </div>
-                    </div>
+                    <Results />
                 </div>      
                 <Footer />      
             </div>
