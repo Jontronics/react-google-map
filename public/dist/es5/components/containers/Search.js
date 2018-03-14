@@ -15,60 +15,44 @@ var _react = require("react");
 var React = _interopRequire(_react);
 
 var Component = _react.Component;
-var _presentation = require("./presentation");
+var Map = require("../presentation").Map;
+var Search = (function (Component) {
+  function Search() {
+    _classCallCheck(this, Search);
 
-var Nav = _presentation.Nav;
-var Footer = _presentation.Footer;
-var Item = _presentation.Item;
-var Map = _presentation.Map;
-var Search = require("./containers").Search;
-var Home = (function (Component) {
-  function Home() {
-    _classCallCheck(this, Home);
-
-    _get(Object.getPrototypeOf(Home.prototype), "constructor", this).call(this);
+    _get(Object.getPrototypeOf(Search.prototype), "constructor", this).call(this);
     this.state = {
       map: null
     };
   }
 
-  _inherits(Home, Component);
+  _inherits(Search, Component);
 
-  _prototypeProperties(Home, null, {
+  _prototypeProperties(Search, null, {
     render: {
       value: function render() {
+        var _this = this;
+
+
         var markers = [{ id: 1, key: "1", defaultAnimation: 2, label: "skate-board", position: { lat: 40.7224017, lng: -73.9896719 } }, { id: 2, key: "2", defaultAnimation: 2, label: "skate-board", position: { lat: 40.7024017, lng: -73.9896719 } }];
 
         return React.createElement(
           "div",
-          { className: "wrapper" },
-          React.createElement(
-            "div",
-            { className: "sidebar", "data-background-color": "white", "data-active-color": "danger" },
-            React.createElement(Search, null)
-          ),
-          React.createElement(
-            "div",
-            { className: "main-panel" },
-            React.createElement(Nav, null),
-            React.createElement(
-              "div",
-              { className: "content" },
-              React.createElement(
-                "div",
-                { className: "container-fluid" },
-                React.createElement(
-                  "div",
-                  { className: "row" },
-                  React.createElement(Item, null),
-                  React.createElement(Item, null),
-                  React.createElement(Item, null),
-                  React.createElement(Item, null)
-                )
-              )
-            ),
-            React.createElement(Footer, null)
-          )
+          { className: "sidebar-wrapper", style: { height: 960 } },
+          React.createElement(Map, {
+            onMapReady: function (map) {
+              if (_this.state.map != null) return;
+              console.log("OnMapReady: " + JSON.stringify(map.getCenter()));
+              _this.setState({
+                map: map
+              });
+            },
+
+            markers: markers,
+            zoom: 14,
+            center: { lat: 40.7224017, lng: -73.9896719 },
+            containerElement: React.createElement("div", { style: { height: 100 + "%" } }),
+            mapElement: React.createElement("div", { style: { height: 100 + "%" } }) })
         );
       },
       writable: true,
@@ -76,7 +60,7 @@ var Home = (function (Component) {
     }
   });
 
-  return Home;
+  return Search;
 })(Component);
 
-module.exports = Home;
+module.exports = Search;
