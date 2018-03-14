@@ -8,6 +8,7 @@ export {
   
   Nav,
   Footer,
-  Item
+  Item,
+  Map
   
 }
