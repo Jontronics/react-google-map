@@ -4,11 +4,13 @@ var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["defau
 
 var Search = _interopRequire(require("./Search"));
 
-// import Results from './Results'
+var Results = _interopRequire(require("./Results"));
 
 var Users = _interopRequire(require("./Users"));
 
 exports.Search = Search;
+exports.Results = Results;
+exports.Users = Users;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });

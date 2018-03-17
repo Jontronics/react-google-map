@@ -11,13 +11,13 @@ class Results extends Component {
   }
   
   render(){
-      
+  
     const items = this.props.item.all || []
     
     return(
       <div className="container-fluid">
           <div className="row"> 
-            { items.map((item, i)=> {
+            { items.map((item, i) => {
                   return <Item key={item.id} item={item} />
                 }) 
             }                 
@@ -29,8 +29,7 @@ class Results extends Component {
 
 const stateToProps = (state) => {
   return {
-    item: state.item 
-    
+    item: state.item     
   }
 }
 

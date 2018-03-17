@@ -21,60 +21,50 @@ var Nav = _presentation.Nav;
 var Footer = _presentation.Footer;
 var Item = _presentation.Item;
 var Map = _presentation.Map;
-var Search = require("./containers").Search;
+var _containers = require("./containers");
+
+var Search = _containers.Search;
+var Results = _containers.Results;
 var Home = (function (Component) {
-    function Home() {
-        _classCallCheck(this, Home);
+  function Home() {
+    _classCallCheck(this, Home);
 
-        _get(Object.getPrototypeOf(Home.prototype), "constructor", this).call(this);
-        this.state = {
-            map: null
-        };
+    _get(Object.getPrototypeOf(Home.prototype), "constructor", this).call(this);
+    this.state = {};
+  }
+
+  _inherits(Home, Component);
+
+  _prototypeProperties(Home, null, {
+    render: {
+      value: function render() {
+        return React.createElement(
+          "div",
+          { className: "wrapper" },
+          React.createElement(
+            "div",
+            { className: "sidebar", "data-background-color": "white", "data-active-color": "danger" },
+            React.createElement(Search, null)
+          ),
+          React.createElement(
+            "div",
+            { className: "main-panel" },
+            React.createElement(Nav, null),
+            React.createElement(
+              "div",
+              { className: "content" },
+              React.createElement(Results, null)
+            ),
+            React.createElement(Footer, null)
+          )
+        );
+      },
+      writable: true,
+      configurable: true
     }
+  });
 
-    _inherits(Home, Component);
-
-    _prototypeProperties(Home, null, {
-        render: {
-            value: function render() {
-                return React.createElement(
-                    "div",
-                    { className: "wrapper" },
-                    React.createElement(
-                        "div",
-                        { className: "sidebar", "data-background-color": "white", "data-active-color": "danger" },
-                        React.createElement(Search, null)
-                    ),
-                    React.createElement(
-                        "div",
-                        { className: "main-panel" },
-                        React.createElement(Nav, null),
-                        React.createElement(
-                            "div",
-                            { className: "content" },
-                            React.createElement(
-                                "div",
-                                { className: "container-fluid" },
-                                React.createElement(
-                                    "div",
-                                    { className: "row" },
-                                    React.createElement(Item, null),
-                                    React.createElement(Item, null),
-                                    React.createElement(Item, null),
-                                    React.createElement(Item, null)
-                                )
-                            )
-                        ),
-                        React.createElement(Footer, null)
-                    )
-                );
-            },
-            writable: true,
-            configurable: true
-        }
-    });
-
-    return Home;
+  return Home;
 })(Component);
 
 module.exports = Home;

@@ -16,6 +16,7 @@ var React = _interopRequire(_react);
 
 var Component = _react.Component;
 var Map = require("../presentation").Map;
+var connect = require("react-redux").connect;
 var Search = (function (Component) {
   function Search() {
     _classCallCheck(this, Search);
@@ -32,7 +33,12 @@ var Search = (function (Component) {
     render: {
       value: function render() {
         var _this = this;
-        var markers = [{ id: 1, key: "1", defaultAnimation: 2, label: "skate-board", position: { lat: 40.7224017, lng: -73.9896719 } }, { id: 2, key: "2", defaultAnimation: 2, label: "skate-board", position: { lat: 40.7024017, lng: -73.9896719 } }];
+        // const markers = [
+        //   {id:1, key:'1', defaultAnimation:2, label: 'skate-board', position:{lat:40.7224017, lng:-73.9896719}},
+        //   {id:2, key:'2', defaultAnimation:2, label: 'BEER', position:{lat:40.7024017, lng:-73.9896719}},
+        // ]
+
+        var markers = this.props.item.all || [];
 
         return React.createElement(
           "div",
@@ -61,4 +67,10 @@ var Search = (function (Component) {
   return Search;
 })(Component);
 
-module.exports = Search;
+var stateProps = function (state) {
+  return {
+    item: state.item
+  };
+};
+
+module.exports = connect(stateToProps)(Search);
