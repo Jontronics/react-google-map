@@ -20,10 +20,36 @@ class Results extends Component {
             { items.map((item, i) => {
                   return <Item key={item.id} item={item} />
                 }) 
-            }                 
+            }                     
           </div>
+          
+          <div className="row">
+            <div className="col-md-4">
+              <div className="card">
+                  <div className="content">  
+                      <div className="footer">
+                        <h3>Add Item</h3>
+                        <input type="text" style={localStyle.input} className="form-control" placeholder="Name" />
+                          <input type="text" style={localStyle.input} className="form-control" placeholder="Price" />
+
+                          <hr />
+                          <div className="stats">
+                              <button className="btn btn-success">Add Item</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>  
       </div>  
     )  
+  }
+}
+
+const localStyle = {
+  input:{
+    border: '1px solid #ddd',
+    marginBottom:12
   }
 }
 
