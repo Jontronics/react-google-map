@@ -28,10 +28,6 @@ export default (props) => {
                 &copy; 2018, made with <i className="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
             </div>
         </div>
-    </footer>
-    
-    
-    
-  )
-  
+    </footer>  
+  )  
 }

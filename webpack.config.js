@@ -16,7 +16,7 @@ module.exports = {
 	node: {
 		fs: 'empty'
 	},
-	devtool: '#source-map',	
+	devtool: '#source-map',
 	performance: process.env.NODE_ENV === 'production' ? {hints: false} : {},
 	plugins: process.env.NODE_ENV === 'production' ? [
 	    new webpack.DefinePlugin({
@@ -25,7 +25,7 @@ module.exports = {
 	        }
 	    })
 	] : [],
-	optimization: {
+	optimization: process.env.NODE_ENV === 'production' ? {
 		minimize: true,
 		minimizer: [
 			new UglifyJsWebpackPlugin({
@@ -50,7 +50,7 @@ module.exports = {
 				}
 			}
 		}
-	},
+	} : {},
 	module: {
 		rules: [
 			{
@@ -61,16 +61,12 @@ module.exports = {
 					presets:['react', 'env']
 				}
 			},
-			// {
-			// 	test: /\.json$/,
-			// 	loader: 'json-loader'
-			// },
 			{
 				test: /\.(jpg|png|svg)$/,
 				loader: 'file-loader',
 				query: {
 					name: '[name].[ext]',
-					outputPath: 'images/',
+					outputPath: 'img/',
 					publicPath: (config.server) ? '/' : 'public/dist/',
 					useRelativePath: false
 				}
@@ -78,4 +74,3 @@ module.exports = {
 		]
 	}
 }
-

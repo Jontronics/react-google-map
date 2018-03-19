@@ -6,14 +6,15 @@ class Results extends Component {
   constructor(){
     super()
     this.state = {
-      
+
     }
   }
   
-  updateItem(attr, event){
-    event.preventDefault()
-    console.log(attr + ' == ' + event.target.value)
-  }
+updateItem(attr, event){
+  event.preventDefault()
+  
+  console.log('updateItem:' + event.target.value)
+}
   
   render(){
   
@@ -34,9 +35,10 @@ class Results extends Component {
                   <div className="content">  
                       <div className="footer">
                         <h3>Add Item</h3>
-                        <input onChange={this.updateItem.bind(this, 'name')} type="text" style={localStyle.input} className="form-control" placeholder="Name" />
-                          <input onChange={this.updateItem.bind(this, 'price')} type="text" style={localStyle.input} className="form-control" placeholder="Price" />
-
+                        
+                          <input onChange={this.updateItem.bind(this,'name')} type="text"  style={localStyle.input} className="form-control" placeholder="Name" name="name"  />
+                          <input onChange={this.updateItem.bind(this,'price')} type="text" style={localStyle.input} className="form-control" placeholder="Price" name="price" /> 
+                            
                           <hr />
                           <div className="stats">
                               <button className="btn btn-success">Add Item</button>

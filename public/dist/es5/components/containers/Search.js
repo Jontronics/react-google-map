@@ -35,7 +35,7 @@ var Search = (function (Component) {
         var _this = this;
         // const markers = [
         //   {id:1, key:'1', defaultAnimation:2, label: 'skate-board', position:{lat:40.7224017, lng:-73.9896719}},
-        //   {id:2, key:'2', defaultAnimation:2, label: 'BEER', position:{lat:40.7024017, lng:-73.9896719}},
+        //   {id:2, key:'2', defaultAnimation:2, label: 'BEER', position:{lat:40.7024017, lng:-73.9896719}}
         // ]
 
         var markers = this.props.item.all || [];
@@ -67,7 +67,7 @@ var Search = (function (Component) {
   return Search;
 })(Component);
 
-var stateProps = function (state) {
+var stateToProps = function (state) {
   return {
     item: state.item
   };

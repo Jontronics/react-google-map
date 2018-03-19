@@ -28,6 +28,16 @@ var Results = (function (Component) {
   _inherits(Results, Component);
 
   _prototypeProperties(Results, null, {
+    updateItem: {
+      value: function updateItem(attr, event) {
+        event.preventDefault();
+
+
+        console.log(attr + " ==" + event.target.value);
+      },
+      writable: true,
+      configurable: true
+    },
     render: {
       value: function render() {
         var items = this.props.item.all || [];
@@ -41,6 +51,43 @@ var Results = (function (Component) {
             items.map(function (item, i) {
               return React.createElement(Item, { key: item.id, item: item });
             })
+          ),
+          React.createElement(
+            "div",
+            { className: "row" },
+            React.createElement(
+              "div",
+              { className: "col-md-4" },
+              React.createElement(
+                "div",
+                { className: "card" },
+                React.createElement(
+                  "div",
+                  { className: "content" },
+                  React.createElement(
+                    "div",
+                    { className: "footer" },
+                    React.createElement(
+                      "h3",
+                      null,
+                      "Add Item"
+                    ),
+                    React.createElement("input", { onChange: this.updateItem.bind(this, "name"), type: "text", style: localStyle.input, className: "form-control", placeholder: "Name", name: "name" }),
+                    React.createElement("input", { onChange: this.updateItem.bind(this, "price"), type: "text", style: localStyle.input, className: "form-control", placeholder: "Price", name: "price" }),
+                    React.createElement("hr", null),
+                    React.createElement(
+                      "div",
+                      { className: "stats" },
+                      React.createElement(
+                        "button",
+                        { className: "btn btn-success" },
+                        "Add Item"
+                      )
+                    )
+                  )
+                )
+              )
+            )
           )
         );
       },
@@ -52,10 +99,16 @@ var Results = (function (Component) {
   return Results;
 })(Component);
 
+var localStyle = {
+  input: {
+    border: "1px solid #ddd",
+    marginBottom: 12
+  }
+};
+
 var stateToProps = function (state) {
   return {
     item: state.item
-
   };
 };
 
