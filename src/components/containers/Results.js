@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Item } from '../presentation'
 import { connect } from 'react-redux'
+import actions from '../../actions'
 
 class Results extends Component {
   constructor(){
@@ -21,7 +22,9 @@ updateItem(attr, event){
 }
 
 addItem(){
-  console.log('ADD ITEM ' + JSON.stringify(this.state.item))
+  console.log('ADD ITEM: ' + JSON.stringify(this.state.item))
+  
+  this.props.addItem(this.state.item)
 }
   
   render(){
@@ -74,6 +77,12 @@ const stateToProps = (state) => {
   }
 }
 
-export default connect(stateToProps)(Results)
+const dispatchToProps = (dispatch) => {
+  return {
+      addItem: (item) => dispatch(actions.addItem(item))
+  }
+}
+
+export default connect(stateToProps, dispatchToProps)(Results)
 
 

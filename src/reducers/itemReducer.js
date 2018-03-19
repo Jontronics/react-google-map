@@ -11,7 +11,9 @@ export default (state = initialState, action) => {
   let updated = Object.assign({}, state)
   
   switch (action.type){
-    // case '':
+    case 'ITEM_ADDED':
+        console.log('ITEM ADDED: ' + JSON.stringify(action.data))
+        return updated
     
     
     default:

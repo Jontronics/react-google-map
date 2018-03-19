@@ -17,12 +17,16 @@ var React = _interopRequire(_react);
 var Component = _react.Component;
 var Item = require("../presentation").Item;
 var connect = require("react-redux").connect;
+var actions = _interopRequire(require("../../actions"));
+
 var Results = (function (Component) {
   function Results() {
     _classCallCheck(this, Results);
 
     _get(Object.getPrototypeOf(Results.prototype), "constructor", this).call(this);
-    this.state = {};
+    this.state = {
+      item: {}
+    };
   }
 
   _inherits(Results, Component);
@@ -31,9 +35,21 @@ var Results = (function (Component) {
     updateItem: {
       value: function updateItem(attr, event) {
         event.preventDefault();
+        console.log(attr + " == " + event.target.value);
+        var updated = Object.assign({}, this.state.item);
+        updated[attr] = event.target.value;
+        this.setState({
+          item: updated
+        });
+      },
+      writable: true,
+      configurable: true
+    },
+    addItem: {
+      value: function addItem() {
+        console.log("ADD ITEM: " + JSON.stringify(this.state.item));
 
-
-        console.log(attr + " ==" + event.target.value);
+        this.props.addItem(this.state.item);
       },
       writable: true,
       configurable: true
@@ -80,7 +96,7 @@ var Results = (function (Component) {
                       { className: "stats" },
                       React.createElement(
                         "button",
-                        { className: "btn btn-success" },
+                        { onClick: this.addItem.bind(this), className: "btn btn-success" },
                         "Add Item"
                       )
                     )
@@ -112,4 +128,12 @@ var stateToProps = function (state) {
   };
 };
 
-module.exports = connect(stateToProps)(Results);
+var dispatchToProps = function (dispatch) {
+  return {
+    addItem: function (item) {
+      return dispatch(actions.addItem(item));
+    }
+  };
+};
+
+module.exports = connect(stateToProps, dispatchToProps)(Results);
