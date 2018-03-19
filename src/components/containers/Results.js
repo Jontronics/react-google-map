@@ -6,14 +6,22 @@ class Results extends Component {
   constructor(){
     super()
     this.state = {
-
+      item: {}
     }
   }
   
 updateItem(attr, event){
   event.preventDefault()
-  
-  console.log('updateItem:' + event.target.value)
+  console.log(attr + ' == ' + event.target.value)
+  let updated = Object.assign({}, this.state.item)
+  updated[attr] = event.target.value 
+  this.setState({
+    item: updated
+  })
+}
+
+addItem(){
+  console.log('ADD ITEM ' + JSON.stringify(this.state.item))
 }
   
   render(){
@@ -41,7 +49,7 @@ updateItem(attr, event){
                             
                           <hr />
                           <div className="stats">
-                              <button className="btn btn-success">Add Item</button>
+                              <button onClick={this.addItem.bind(this)} className="btn btn-success">Add Item</button>
                           </div>
                       </div>
                   </div>

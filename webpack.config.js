@@ -25,7 +25,7 @@ module.exports = {
 	        }
 	    })
 	] : [],
-	optimization: process.env.NODE_ENV === 'production' ? {
+	optimization: {
 		minimize: true,
 		minimizer: [
 			new UglifyJsWebpackPlugin({
@@ -33,10 +33,10 @@ module.exports = {
 					output: {
 						comments: false
 					},
-					compress: {
+					compress: process.env.NODE_ENV === 'production' ? {
 						drop_console: true,
 						dead_code: true
-					}
+					} : {}
 				}
 			})
 		],
@@ -50,7 +50,7 @@ module.exports = {
 				}
 			}
 		}
-	} : {},
+	},
 	module: {
 		rules: [
 			{
