@@ -26,8 +26,12 @@ updateItem(attr, event){
 addItem(){
   console.log('ADD ITEM: ' + JSON.stringify(this.state.item))
 
+  let newItem = Object.assign({}, this.state.item)
+  newItem['id'] = 100
+  newItem['key'] = '100'
+  newItem['defaultAnimation'] = 2
 
-  this.props.addItem(this.state.item)
+  this.props.addItem(newItem)
 }
   
   render(){
