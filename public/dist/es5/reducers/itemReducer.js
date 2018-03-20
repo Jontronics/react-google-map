@@ -11,6 +11,11 @@ module.exports = function (_x, action) {
     switch (action.type) {
         case "ITEM_ADDED":
             console.log("ITEM ADDED: " + JSON.stringify(action.data));
+
+            var all = Object.assign([], updated.all);
+            all.push(action.data);
+            updated.all = all;
+
             return updated;
 
 

@@ -7,7 +7,9 @@ class Results extends Component {
   constructor(){
     super()
     this.state = {
-      item: {}
+      item: {
+        position: {lat:40.70224017, lng:-73.9796719}}
+      }
     }
   }
   
@@ -24,13 +26,17 @@ updateItem(attr, event){
 addItem(){
   console.log('ADD ITEM: ' + JSON.stringify(this.state.item))
   
-  this.props.addItem(this.state.item)
+  let newItem = Object.assign({}, this.state.item)
+  
+  newItem['id'] = 100
+  newItem['key'] = '100'
+  newItem['defaultAnimation'] = 2
+
+  this.props.addItem(newItem)
 }
   
   render(){
-  
     const items = this.props.item.all || []
-    
     return(
       <div className="container-fluid">
           <div className="row"> 
@@ -47,8 +53,8 @@ addItem(){
                       <div className="footer">
                         <h3>Add Item</h3>
                         
-                          <input onChange={this.updateItem.bind(this,'name')} type="text"  style={localStyle.input} className="form-control" placeholder="Name" name="name"  />
-                          <input onChange={this.updateItem.bind(this,'price')} type="text" style={localStyle.input} className="form-control" placeholder="Price" name="price" /> 
+                          <input onChange={this.updateItem.bind(this, 'label')} type="text"  style={localStyle.input} className="form-control" placeholder="Name"/>
+                          <input onChange={this.updateItem.bind(this, 'price')} type="text" style={localStyle.input} className="form-control" placeholder="Price"/> 
                             
                           <hr />
                           <div className="stats">

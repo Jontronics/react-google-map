@@ -25,7 +25,9 @@ var Results = (function (Component) {
 
     _get(Object.getPrototypeOf(Results.prototype), "constructor", this).call(this);
     this.state = {
-      item: {}
+      item: {
+        position: { lat: 40.8024017, lng: -73.9796719 }
+      }
     };
   }
 
@@ -49,7 +51,8 @@ var Results = (function (Component) {
       value: function addItem() {
         console.log("ADD ITEM: " + JSON.stringify(this.state.item));
 
-        this.props.addItem(this.state.item);
+        var newItem = Object.assign({}, this.state.item);
+
       },
       writable: true,
       configurable: true
@@ -88,7 +91,7 @@ var Results = (function (Component) {
                       null,
                       "Add Item"
                     ),
-                    React.createElement("input", { onChange: this.updateItem.bind(this, "name"), type: "text", style: localStyle.input, className: "form-control", placeholder: "Name", name: "name" }),
+                    React.createElement("input", { onChange: this.updateItem.bind(this, "label"), type: "text", style: localStyle.input, className: "form-control", placeholder: "Name", name: "name" }),
                     React.createElement("input", { onChange: this.updateItem.bind(this, "price"), type: "text", style: localStyle.input, className: "form-control", placeholder: "Price", name: "price" }),
                     React.createElement("hr", null),
                     React.createElement(
