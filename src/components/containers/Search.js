@@ -10,11 +10,11 @@ class Search extends Component {
     }
   }
   
+  centerChanged(center){
+    console.log('centerChaged: ' + JSON.stringify(center))
+  }
+  
   render(){  
-    // const markers = [
-    //   {id:1, key:'1', defaultAnimation:2, label: 'skate-board', position:{lat:40.7224017, lng:-73.9896719}},
-    //   {id:2, key:'2', defaultAnimation:2, label: 'BEER', position:{lat:40.7024017, lng:-73.9896719}}
-    // ]
     
     const markers = this.props.item.all || []
 
@@ -29,7 +29,7 @@ class Search extends Component {
                       map: map
                   })
             }}  
-            
+            locationChanged={this.centerChanged.bind(this)}
             markers={markers}
             zoom={14}
             center={{lat:40.7224017, lng:-73.9896719}}
