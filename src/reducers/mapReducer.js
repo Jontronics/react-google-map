@@ -1,3 +1,5 @@
+import constants from '../constants'
+
 var initialState = {
   currentLocation: {
     lat:40.7224017, lng:-73.9896719
@@ -9,7 +11,7 @@ export default (state = initialState, action) => {
   
   switch (action.type){
     
-    case 'LOCATION_CHANGED':
+    case constants.LOCATION_CHANGED:
       console.log('LOCATION_CHANGED: ' + JSON.stringify(action.data))
       updated['currentLocation'] = action.data 
       return updated

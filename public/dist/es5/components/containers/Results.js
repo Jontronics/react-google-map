@@ -25,9 +25,7 @@ var Results = (function (Component) {
 
     _get(Object.getPrototypeOf(Results.prototype), "constructor", this).call(this);
     this.state = {
-      item: {
-        position: { lat: 40.8024017, lng: -73.9796719 }
-      }
+      item: {}
     };
   }
 
@@ -52,7 +50,12 @@ var Results = (function (Component) {
         console.log("ADD ITEM: " + JSON.stringify(this.state.item));
 
         var newItem = Object.assign({}, this.state.item);
+        newItem.id = 100;
+        newItem.key = "100";
+        newItem.defaultAnimation = 2;
+        newItem.position = this.props.map.currentLocation;
 
+        this.props.addItem(newItem);
       },
       writable: true,
       configurable: true
@@ -60,7 +63,6 @@ var Results = (function (Component) {
     render: {
       value: function render() {
         var items = this.props.item.all || [];
-
         return React.createElement(
           "div",
           { className: "container-fluid" },
@@ -91,8 +93,8 @@ var Results = (function (Component) {
                       null,
                       "Add Item"
                     ),
-                    React.createElement("input", { onChange: this.updateItem.bind(this, "label"), type: "text", style: localStyle.input, className: "form-control", placeholder: "Name", name: "name" }),
-                    React.createElement("input", { onChange: this.updateItem.bind(this, "price"), type: "text", style: localStyle.input, className: "form-control", placeholder: "Price", name: "price" }),
+                    React.createElement("input", { onChange: this.updateItem.bind(this, "label"), type: "text", style: localStyle.input, className: "form-control", placeholder: "Name" }),
+                    React.createElement("input", { onChange: this.updateItem.bind(this, "price"), type: "text", style: localStyle.input, className: "form-control", placeholder: "Price" }),
                     React.createElement("hr", null),
                     React.createElement(
                       "div",
@@ -127,7 +129,8 @@ var localStyle = {
 
 var stateToProps = function (state) {
   return {
-    item: state.item
+    item: state.item,
+    map: state.map
   };
 };
 
@@ -140,3 +143,4 @@ var dispatchToProps = function (dispatch) {
 };
 
 module.exports = connect(stateToProps, dispatchToProps)(Results);
+// position: {lat:40.70224017, lng:-73.9796719}

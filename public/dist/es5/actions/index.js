@@ -9,8 +9,15 @@ module.exports = {
 
 	addItem: function (item) {
 		return {
-			type: "ITEM_ADDED",
+			type: constants.ITEM_ADDED,
 			data: item
+		};
+	},
+
+	locationChanged: function (location) {
+		return {
+			type: constants.LOCATION_CHANGED,
+			data: location
 		};
 	}
 

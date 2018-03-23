@@ -17,6 +17,8 @@ var React = _interopRequire(_react);
 var Component = _react.Component;
 var Map = require("../presentation").Map;
 var connect = require("react-redux").connect;
+var actions = _interopRequire(require("../../actions"));
+
 var Search = (function (Component) {
   function Search() {
     _classCallCheck(this, Search);
@@ -30,19 +32,24 @@ var Search = (function (Component) {
   _inherits(Search, Component);
 
   _prototypeProperties(Search, null, {
+    centerChanged: {
+      value: function centerChanged(center) {
+        console.log("centerChaged: " + JSON.stringify(center));
+        this.props.locationChanged(center);
+      },
+      writable: true,
+      configurable: true
+    },
     render: {
       value: function render() {
         var _this = this;
-        // const markers = [
-        //   {id:1, key:'1', defaultAnimation:2, label: 'skate-board', position:{lat:40.7224017, lng:-73.9896719}},
-        //   {id:2, key:'2', defaultAnimation:2, label: 'BEER', position:{lat:40.7024017, lng:-73.9896719}}
-        // ]
+
 
         var markers = this.props.item.all || [];
 
         return React.createElement(
           "div",
-          { className: "sidebar-wrapper", style: { height: 960 } },
+          { className: "sidebar-wrapper" },
           React.createElement(Map, {
             onMapReady: function (map) {
               if (_this.state.map != null) return;
@@ -51,12 +58,12 @@ var Search = (function (Component) {
                 map: map
               });
             },
-
+            locationChanged: this.centerChanged.bind(this),
             markers: markers,
             zoom: 14,
-            center: { lat: 40.7224017, lng: -73.9896719 },
+            center: this.props.map.currentLocation,
             containerElement: React.createElement("div", { style: { height: 100 + "%" } }),
-            mapElement: React.createElement("div", { style: { height: 100 + "%" } }) })
+            mapElement: React.createElement("div", { style: { height: 100 + "vh" } }) })
         );
       },
       writable: true,
@@ -69,8 +76,17 @@ var Search = (function (Component) {
 
 var stateToProps = function (state) {
   return {
-    item: state.item
+    item: state.item,
+    map: state.map
   };
 };
 
-module.exports = connect(stateToProps)(Search);
+var dispatchToProps = function (dispatch) {
+  return {
+    locationChanged: function (location) {
+      return dispatch(actions.locationChanged(location));
+    }
+  };
+};
+
+module.exports = connect(stateToProps, dispatchToProps)(Search);

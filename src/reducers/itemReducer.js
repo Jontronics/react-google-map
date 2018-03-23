@@ -1,3 +1,5 @@
+import constants from '../constants'
+
 var initialState = {
   all: [
       {id:1, key:'1', price: 10, defaultAnimation:2, label: 'skate-board', position:{lat:40.7224017, lng:-73.9896719}},
@@ -11,7 +13,7 @@ export default (state = initialState, action) => {
   let updated = Object.assign({}, state)
   
   switch (action.type){
-    case 'ITEM_ADDED':
+    case constants.ITEM_ADDED:
         console.log('ITEM ADDED: ' + JSON.stringify(action.data))
         
         let all = Object.assign([], updated.all)
