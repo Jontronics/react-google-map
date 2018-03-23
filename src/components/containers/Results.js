@@ -53,7 +53,7 @@ addItem(){
                       <div className="footer">
                         <h3>Add Item</h3>
                         
-                          <input onChange={this.updateItem.bind(this, 'label')} type="text"  style={localStyle.input} className="form-control" placeholder="Name"/>
+                          <input onChange={this.updateItem.bind(this, 'name')} type="text"  style={localStyle.input} className="form-control" placeholder="Name"/>
                           <input onChange={this.updateItem.bind(this, 'price')} type="text" style={localStyle.input} className="form-control" placeholder="Price"/> 
                             
                           <hr />

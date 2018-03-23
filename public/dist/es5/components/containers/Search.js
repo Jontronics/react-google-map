@@ -45,7 +45,19 @@ var Search = (function (Component) {
         var _this = this;
 
 
-        var markers = this.props.item.all || [];
+        var items = this.props.item.all || [];
+
+        var markers = [];
+        items.forEach(function (item, i) {
+          var marker = {
+            key: item.id,
+            label: item.name,
+            position: item.position,
+            defaultAnimation: 2
+          };
+
+          markers.push(marker);
+        });
 
         return React.createElement(
           "div",

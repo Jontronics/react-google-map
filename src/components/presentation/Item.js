@@ -18,7 +18,7 @@ export default (props) => {
                     </div>
                     <div className="col-xs-7">
                         <div className="numbers">
-                            <p>{item.label}</p>
+                            <p>{item.name}</p>
                             ${item.price}
                         </div>
                     </div>

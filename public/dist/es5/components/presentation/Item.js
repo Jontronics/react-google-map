@@ -43,7 +43,7 @@ module.exports = function (props) {
                             React.createElement(
                                 "p",
                                 null,
-                                item.label
+                                item.name
                             ),
                             "$",
                             item.price

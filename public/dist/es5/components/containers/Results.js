@@ -93,7 +93,7 @@ var Results = (function (Component) {
                       null,
                       "Add Item"
                     ),
-                    React.createElement("input", { onChange: this.updateItem.bind(this, "label"), type: "text", style: localStyle.input, className: "form-control", placeholder: "Name" }),
+                    React.createElement("input", { onChange: this.updateItem.bind(this, "name"), type: "text", style: localStyle.input, className: "form-control", placeholder: "Name" }),
                     React.createElement("input", { onChange: this.updateItem.bind(this, "price"), type: "text", style: localStyle.input, className: "form-control", placeholder: "Price" }),
                     React.createElement("hr", null),
                     React.createElement(

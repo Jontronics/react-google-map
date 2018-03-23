@@ -18,7 +18,20 @@ class Search extends Component {
   
   render(){  
     
-    const markers = this.props.item.all || []
+    const items = this.props.item.all || []
+    
+    let markers = [] 
+    items.forEach((item, i) => {
+        const marker = {
+          key: item.id,
+          label: item.name,
+          position: item.position,
+          defaultAnimation: 2
+        }
+        
+        markers.push(marker)
+      
+    })
 
     return(
       <div className="sidebar-wrapper">    
