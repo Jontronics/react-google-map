@@ -2,9 +2,9 @@ import constants from '../constants'
 
 var initialState = {
   all: [
-      {id:'1', price: 10, name: 'skateSpot', position:{lat:40.7224017, lng:-73.9896719}},
-      {id:'2', price: 20, name: 'Stuff', position:{lat:40.7024017, lng:-73.9896719}},
-      {id:'3', price: 90, name: 'Meow', position:{lat:40.7124017, lng:-73.9796719}}
+      {id:'1', price: 10, name: 'skateSpot', position:{lat:40.7224017, lng:-73.9896719}, seller:{username:'Tony Hawk', image:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Tony_Hawk_right_profile.jpg/220px-Tony_Hawk_right_profile.jpg'}},
+      {id:'2', price: 20, name: 'Stuff', position:{lat:40.7024017, lng:-73.9896719}, seller:{username:'Tom Penny', image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS28jUhjktpD35m7g0ygmYhQrkVJcc6rlMWjRnZURMnQ_oged7T'}},
+      {id:'3', price: 90, name: 'Meow', position:{lat:40.7124017, lng:-73.9796719}, seller:{username:'Jamie Thomas', image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrgF78JaOattwCFs_oTT-ojLe-lOwqL8EKtGaHQugYOuxX3h9A'}}
   ]
 }
 

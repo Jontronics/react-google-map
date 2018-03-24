@@ -27,9 +27,9 @@ addItem(){
   console.log('ADD ITEM: ' + JSON.stringify(this.state.item))
 
   let newItem = Object.assign({}, this.state.item)
-  newItem['id'] = 100
-  newItem['key'] = '100'
-  newItem['defaultAnimation'] = 2
+  
+  const len = this.props.item.all.length+1
+  newItem['id'] = len.toString()
   newItem['position'] = this.props.map.currentLocation
 
   this.props.addItem(newItem)

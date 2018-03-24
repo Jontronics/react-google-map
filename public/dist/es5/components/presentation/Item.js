@@ -57,8 +57,9 @@ module.exports = function (props) {
                     React.createElement(
                         "div",
                         { className: "stats" },
-                        React.createElement("i", { className: "ti-reload" }),
-                        " Updated now"
+                        React.createElement("i", { className: "ti-rocket" }),
+                        item.seller.username,
+                        React.createElement("img", { style: { width: 28, borderRadius: 16 }, src: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Tony_Hawk_right_profile.jpg/220px-Tony_Hawk_right_profile.jpg" })
                     )
                 )
             )

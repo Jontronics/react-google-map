@@ -5,7 +5,7 @@ var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["defau
 var constants = _interopRequire(require("../constants"));
 
 var initialState = {
-    all: [{ id: "1", price: 10, name: "skateSpot", position: { lat: 40.7224017, lng: -73.9896719 } }, { id: "2", price: 20, name: "Stuff", position: { lat: 40.7024017, lng: -73.9896719 } }, { id: "3", price: 90, name: "Meow", position: { lat: 40.7124017, lng: -73.9796719 } }]
+    all: [{ id: "1", price: 10, name: "skateSpot", position: { lat: 40.7224017, lng: -73.9896719 }, seller: { username: "Tony Hawk" } }, { id: "2", price: 20, name: "Stuff", position: { lat: 40.7024017, lng: -73.9896719 }, seller: { username: "Tom Penny" } }, { id: "3", price: 90, name: "Meow", position: { lat: 40.7124017, lng: -73.9796719 }, seller: { username: "Jamie Thomas" } }]
 };
 
 module.exports = function (_x, action) {

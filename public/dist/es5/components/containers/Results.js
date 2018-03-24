@@ -50,9 +50,9 @@ var Results = (function (Component) {
         console.log("ADD ITEM: " + JSON.stringify(this.state.item));
 
         var newItem = Object.assign({}, this.state.item);
-        newItem.id = 100;
-        newItem.key = "100";
-        newItem.defaultAnimation = 2;
+
+        var len = this.props.item.all.length + 1;
+        newItem.id = len.toString();
         newItem.position = this.props.map.currentLocation;
 
         this.props.addItem(newItem);
