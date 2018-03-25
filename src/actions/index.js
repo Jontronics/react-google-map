@@ -1,5 +1,6 @@
 import constants from '../constants'
-import { TurboClient } from '../utils'
+import { TurboClient, HTTPAsync } from '../utils'
+
 
 
 export default {
@@ -15,6 +16,12 @@ export default {
 		return {
 			type: constants.LOCATION_CHANGED,
 			data: location
+		}
+	},
+	
+	currentUser: () => {
+		return dispatch => {
+ 				return dispatch(HTTPAsync.get('/auth/currentuser', null, constants.CURRENT_USER_RECEIVED))
 		}
 	}
 

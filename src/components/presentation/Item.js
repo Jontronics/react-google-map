@@ -10,18 +10,16 @@ export default (props) => {
     <div className="col-lg-3 col-sm-6">
         <div className="card">
             <div className="content">
-                <div className="row">
-                    <div className="col-xs-5">
-                        <div className="icon-big icon-warning text-center">
-                            <i className="ti-server"></i>
-                        </div>
-                    </div>
-                    <div className="col-xs-7">
+                <div className="row">  
+                    <div className="col-xs-12">
                         <div className="numbers">
                             <p>{item.name}</p>
-                            ${item.price}
+                            {item.price}
                         </div>
-                    </div>
+                    </div>  
+                    <div className="col-xs-12">
+                      <img style={localStyle.itemImage} src={item.image} />  
+                    </div>    
                 </div>
                 <div className="footer">
                     <hr />
@@ -39,5 +37,17 @@ export default (props) => {
 
 
 const localStyle = {
-  icon: {width:28,height:28, borderRadius:14, float:'right'}
+  icon: {
+    width:28,
+    height:28, 
+    borderRadius:14, 
+    float:'right'
+  },
+  itemImage: {
+    width:100+'%', 
+    padding:3, 
+    border:'1px solid #F1EAE1'
+  }
 }
+
+

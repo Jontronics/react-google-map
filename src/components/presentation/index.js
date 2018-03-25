@@ -1,4 +1,3 @@
-import Nav from './Nav'
 import Footer from './Footer'
 import Item from './Item'
 import Map from './Map'
@@ -6,7 +5,7 @@ import Map from './Map'
 
 export {
   
-  Nav,
+  // Nav,
   Footer,
   Item,
   Map

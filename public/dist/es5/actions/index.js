@@ -4,7 +4,10 @@ var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["defau
 
 var constants = _interopRequire(require("../constants"));
 
-var TurboClient = require("../utils").TurboClient;
+var _utils = require("../utils");
+
+var TurboClient = _utils.TurboClient;
+var HTTPAsync = _utils.HTTPAsync;
 module.exports = {
 
 	addItem: function (item) {
@@ -18,6 +21,12 @@ module.exports = {
 		return {
 			type: constants.LOCATION_CHANGED,
 			data: location
+		};
+	},
+
+	currentUser: function () {
+		return function (dispatch) {
+			return dispatch(HTTPAsync.get("user", params, constants.USERS_RECEIVED));
 		};
 	}
 
