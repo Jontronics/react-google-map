@@ -16,6 +16,8 @@ var React = _interopRequire(_react);
 
 var Component = _react.Component;
 var Item = require("../presentation").Item;
+var Dropzone = _interopRequire(require("react-dropzone"));
+
 var connect = require("react-redux").connect;
 var actions = _interopRequire(require("../../actions"));
 
@@ -60,6 +62,14 @@ var Results = (function (Component) {
       writable: true,
       configurable: true
     },
+    uploadImage: {
+      value: function uploadImage(files) {
+        var image = files[0];
+        console.log("uploadImage: " + image.name);
+      },
+      writable: true,
+      configurable: true
+    },
     render: {
       value: function render() {
         var items = this.props.item.all || [];
@@ -99,6 +109,11 @@ var Results = (function (Component) {
                     React.createElement(
                       "div",
                       { className: "stats" },
+                      React.createElement(
+                        Dropzone,
+                        { onDrop: this.uploadImage.bind(this), className: "btn btn-info btn-fill", style: { marginRight: 16 } },
+                        "Add Spot Pick"
+                      ),
                       React.createElement(
                         "button",
                         { onClick: this.addItem.bind(this), className: "btn btn-success" },

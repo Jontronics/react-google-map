@@ -26,7 +26,7 @@ module.exports = {
 
 	currentUser: function () {
 		return function (dispatch) {
-			return dispatch(HTTPAsync.get("user", params, constants.USERS_RECEIVED));
+			return dispatch(HTTPAsync.get("/auth/currentuser", null, constants.CURRENT_USER_RECEIVED));
 		};
 	}
 

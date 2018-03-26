@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Item } from '../presentation'
+import  Dropzone from 'react-dropzone'
 import { connect } from 'react-redux'
 import actions from '../../actions'
 
@@ -34,6 +35,11 @@ addItem(){
 
   this.props.addItem(newItem)
 }
+
+uploadImage(files){
+  const image = files[0]
+  console.log('uploadImage: ' + image.name)
+}
   
   render(){
     const items = this.props.item.all || []
@@ -58,6 +64,7 @@ addItem(){
                             
                           <hr />
                           <div className="stats">
+                              <Dropzone onDrop={this.uploadImage.bind(this)}  className="btn btn-info btn-fill" style={{marginRight:16}} >Add Spot Pick</Dropzone>
                               <button onClick={this.addItem.bind(this)} className="btn btn-success">Add Item</button>
                           </div>
                       </div>

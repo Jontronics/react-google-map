@@ -32,6 +32,16 @@ var Search = (function (Component) {
   _inherits(Search, Component);
 
   _prototypeProperties(Search, null, {
+    componentDidMount: {
+      value: function componentDidMount() {
+        // console.log('componentDidMount: ')
+        this.props.currentUser().then(function (data) {
+          console.log("CURREN USER: " + JSON.stringify(data));
+        })["catch"](function (err) {});
+      },
+      writable: true,
+      configurable: true
+    },
     centerChanged: {
       value: function centerChanged(center) {
         console.log("centerChaged: " + JSON.stringify(center));
@@ -97,6 +107,9 @@ var dispatchToProps = function (dispatch) {
   return {
     locationChanged: function (location) {
       return dispatch(actions.locationChanged(location));
+    },
+    currentUser: function () {
+      return dispatch(actions.currentUser());
     }
   };
 };
