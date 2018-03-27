@@ -41,7 +41,14 @@ addItem(){
     image: currentUser.image || ''
   }
   
-  console.log('ADD ITEM: ' + JSON.stringify(updated))
+  // console.log('ADD ITEM: ' + JSON.stringify(updated))
+  this.props.addItem(updated)
+  .then(data => {
+    console.log('ITEM ADDER: ' + JSON.stringify(data))
+  })
+  .catch(er => {
+    console.log('ERROR: ' + err.message)
+  })
   
   // let newItem = Object.assign({}, this.state.item)
   // const len = this.props.item.all.length+1
