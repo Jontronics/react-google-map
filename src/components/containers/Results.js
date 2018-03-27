@@ -3,6 +3,7 @@ import { Item } from '../presentation'
 import  Dropzone from 'react-dropzone'
 import { connect } from 'react-redux'
 import actions from '../../actions'
+import turbo from 'turbo360'
 
 class Results extends Component {
   constructor(){
@@ -25,20 +26,51 @@ updateItem(attr, event){
 }
 
 addItem(){
-  console.log('ADD ITEM: ' + JSON.stringify(this.state.item))
-
-  let newItem = Object.assign({}, this.state.item)
   
-  const len = this.props.item.all.length+1
-  newItem['id'] = len.toString()
-  newItem['position'] = this.props.map.currentLocation
-
-  this.props.addItem(newItem)
+  if (this.props.account.currentUser == null){
+    alert('Please log in or register to post spots bruh')
+    return
+  }
+  
+  const currentUser = this.props.account.currentUser
+  
+  let updated = Object.assign({}, this.state.item)
+  updated['seller'] = {
+    id: currentUser.id,
+    username: currentUser.username,
+    image: currentUser.image || ''
+  }
+  
+  console.log('ADD ITEM: ' + JSON.stringify(updated))
+  
+  // let newItem = Object.assign({}, this.state.item)
+  // const len = this.props.item.all.length+1
+  // newItem['id'] = len.toString()
+  // newItem['position'] = this.props.map.currentLocation
+  // this.props.addItem(newItem)
 }
 
 uploadImage(files){
   const image = files[0]
   console.log('uploadImage: ' + image.name)
+  const turboClient = turbo({
+    site_id:'5aa5c93aafdd120014d1e3af'
+  })
+  
+  turboClient.uploadFile(image)
+  .then(data => {
+    // console.log('FILE UPLOADED: ' + data.result.url)
+    let updated = Object.assign({}, this.state.item)
+    updated['image'] = data.result.url
+    this.setState({
+        item: updated
+    })
+  })
+  .catch(err => {
+    console.log('Upload ERROR: ' + err.message)
+    
+  })
+  
 }
   
   render(){
@@ -57,15 +89,15 @@ uploadImage(files){
               <div className="card">
                   <div className="content">  
                       <div className="footer">
-                        <h3>Add Item</h3>
+                        <h3>Add New Skate Spot</h3>
                         
                           <input onChange={this.updateItem.bind(this, 'name')} type="text"  style={localStyle.input} className="form-control" placeholder="Name"/>
-                          <input onChange={this.updateItem.bind(this, 'price')} type="text" style={localStyle.input} className="form-control" placeholder="Price"/> 
-                            
+                          <input onChange={this.updateItem.bind(this, 'price')} type="text" style={localStyle.input} className="form-control" placeholder="# for now not sure why i did this"/> 
+                            { (this.state.item.image == null) ? null : <img src={this.state.item.image+'=s120-c'} /> }
                           <hr />
                           <div className="stats">
-                              <Dropzone onDrop={this.uploadImage.bind(this)}  className="btn btn-info btn-fill" style={{marginRight:16}} >Add Spot Pick</Dropzone>
-                              <button onClick={this.addItem.bind(this)} className="btn btn-success">Add Item</button>
+                              <Dropzone onDrop={this.uploadImage.bind(this)}  className="btn btn-info btn-fill" style={{marginRight:16}} >Add Pick</Dropzone>
+                              <button onClick={this.addItem.bind(this)} className="btn btn-success">Add Spot</button>
                           </div>
                       </div>
                   </div>
@@ -87,7 +119,8 @@ const localStyle = {
 const stateToProps = (state) => {
   return {
     item: state.item,
-    map: state.map     
+    map: state.map,
+    account: state.account     
   }
 }
 

@@ -15,7 +15,7 @@ class Nav extends Component {
                         <span className="icon-bar bar2"></span>
                         <span className="icon-bar bar3"></span>
                     </button>
-                    <a className="navbar-brand" href="#">Dashboard</a>
+                    <a className="navbar-brand" href="#">This is a Skate App dude</a>
                 </div>
                 <div className="collapse navbar-collapse">
                     <ul className="nav navbar-nav navbar-right">

@@ -21,6 +21,8 @@ var Dropzone = _interopRequire(require("react-dropzone"));
 var connect = require("react-redux").connect;
 var actions = _interopRequire(require("../../actions"));
 
+var turbo = _interopRequire(require("turbo360"));
+
 var Results = (function (Component) {
   function Results() {
     _classCallCheck(this, Results);
@@ -66,6 +68,13 @@ var Results = (function (Component) {
       value: function uploadImage(files) {
         var image = files[0];
         console.log("uploadImage: " + image.name);
+        var turboClient = turbo({
+          site_id: "5aa5c93aafdd120014d1e3af"
+        });
+
+        turboClient.uploadFile(image).then(function (data) {
+          console.log("FILE UPLOADED: " + JSON.stringify(data));
+        })["catch"](function (err) {});
       },
       writable: true,
       configurable: true
@@ -101,10 +110,10 @@ var Results = (function (Component) {
                     React.createElement(
                       "h3",
                       null,
-                      "Add Item"
+                      "Add New Skate Spot"
                     ),
                     React.createElement("input", { onChange: this.updateItem.bind(this, "name"), type: "text", style: localStyle.input, className: "form-control", placeholder: "Name" }),
-                    React.createElement("input", { onChange: this.updateItem.bind(this, "price"), type: "text", style: localStyle.input, className: "form-control", placeholder: "Price" }),
+                    React.createElement("input", { onChange: this.updateItem.bind(this, "price"), type: "text", style: localStyle.input, className: "form-control", placeholder: "# for now not sure why i did this" }),
                     React.createElement("hr", null),
                     React.createElement(
                       "div",
@@ -112,12 +121,12 @@ var Results = (function (Component) {
                       React.createElement(
                         Dropzone,
                         { onDrop: this.uploadImage.bind(this), className: "btn btn-info btn-fill", style: { marginRight: 16 } },
-                        "Add Spot Pick"
+                        "Add Pick"
                       ),
                       React.createElement(
                         "button",
                         { onClick: this.addItem.bind(this), className: "btn btn-success" },
-                        "Add Item"
+                        "Add Spot"
                       )
                     )
                   )

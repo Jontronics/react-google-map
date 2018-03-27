@@ -53,7 +53,7 @@ var Nav = (function (Component) {
                             React.createElement(
                                 "a",
                                 { className: "navbar-brand", href: "#" },
-                                "Dashboard"
+                                "This is a Skate App dude"
                             )
                         ),
                         React.createElement(
