@@ -11,10 +11,14 @@ var HTTPAsync = _utils.HTTPAsync;
 module.exports = {
 
 	addItem: function (item) {
-		return {
-			type: constants.ITEM_ADDED,
-			data: item
-		};
+		return function (dispatch) {
+			return dispatch(HTTPAsync.post("/api/item", item, constants.ITEM_ADDED));
+		}
+		// return {
+		// 	type: constants.ITEM_ADDED,
+		// 	data: item
+		// }
+		;
 	},
 
 	locationChanged: function (location) {

@@ -12,14 +12,12 @@ export default (state = initialState, action) => {
   let updated = Object.assign({}, state)
   
   switch (action.type){
-    
-    
-    
     case constants.ITEM_ADDED:
-        console.log('ITEM ADDED: ' + JSON.stringify(action.data))
+          const payload = action.data
+        console.log('ITEM ADDED: ' + JSON.stringify(payload.data))
         
         let all = Object.assign([], updated.all)
-        all.push(action.data)
+        all.push(payload.data)
         updated['all'] = all
         
         return updated
