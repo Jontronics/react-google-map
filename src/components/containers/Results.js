@@ -33,8 +33,8 @@ addItem(){
   }
   
   const currentUser = this.props.account.currentUser
-  
   let updated = Object.assign({}, this.state.item)
+  updated['position'] = this.props.map.currentLocation
   updated['seller'] = {
     id: currentUser.id,
     username: currentUser.username,
