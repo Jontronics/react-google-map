@@ -8,11 +8,13 @@ export default {
 addItem: (item) => {	
 	return dispatch => {
 			return dispatch(HTTPAsync.post('/api/item', item, constants.ITEM_ADDED))
-	}
-		// return {
-		// 	type: constants.ITEM_ADDED,
-		// 	data: item
-		// }
+			}
+	},
+	
+	fetchItems: (params) => {
+		return dispatch => {
+				return dispatch(HTTPAsync.get('/api/item', params, constants.ITEMS_RECEIVED))
+		}
 	},
 	
 	locationChanged: (location) => {

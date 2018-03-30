@@ -17,22 +17,25 @@ router.post('/:resource', function(req, res){
 		res.json({
 			confirmation: 'fail',
 			message: err.message
-		})
-		
+		})		
 	})
-	
-	// res.json({
-	// 	confirmation: 'success',
-	// 	resource: req.params.resource,
-	// 	query: req.query // from the url query string
-	// })
 })
 
 router.get('/:resource', function(req, res){
 	const resource = req.params.resource
-	res.json({
-		confirmation: 'success',
-		resource: resource
+	
+	turbo.fetch(resource, null)
+	.then(data => {	
+			res.json({
+				confirmation: 'success',
+				data: data
+			})
+	})
+	.catch(err => {
+		res.json({
+			confirmation: 'fail',
+			message: err.message
+		})		
 	})
 })
 

@@ -15,6 +15,11 @@ class Results extends Component {
     }
   }
   
+  componentDidMount(){
+    this.props.fetchItems()
+    
+  }
+  
 updateItem(attr, event){
   event.preventDefault()
   console.log(attr + ' == ' + event.target.value)
@@ -49,12 +54,6 @@ addItem(){
   .catch(er => {
     console.log('ERROR: ' + err.message)
   })
-  
-  // let newItem = Object.assign({}, this.state.item)
-  // const len = this.props.item.all.length+1
-  // newItem['id'] = len.toString()
-  // newItem['position'] = this.props.map.currentLocation
-  // this.props.addItem(newItem)
 }
 
 uploadImage(files){
@@ -133,7 +132,8 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
   return {
-      addItem: (item) => dispatch(actions.addItem(item))
+      addItem: (item) => dispatch(actions.addItem(item)),
+      fetchItems: (params) => dispatch(actions.fetchItems(params))
   }
 }
 
