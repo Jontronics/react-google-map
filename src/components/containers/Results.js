@@ -15,7 +15,11 @@ class Results extends Component {
       showModal: false,
       item: {
         // position: {lat:40.70224017, lng:-73.9796719} 
+      },
+      order: {
+        
       }
+      
     }
   }
   
@@ -90,6 +94,31 @@ onPurchase(item, event){
   })
   console.log('onPurchase: ' + JSON.stringify(item))
 }
+
+updateOrder(event){
+  console.log('updateOrder: ' + event.target.value)
+  let updated = Object.assign({}, this.state.order)
+  updated['message'] = event.target.value
+  this.setState({
+    order: updated
+  })
+}
+
+submitOrder(){
+  let updated = Object.assign({}, this.state.order)
+  updated['item'] = this.state.selectedItem
+  
+  updated['buyer'] = {
+    id: this.props.account.currentUser.id,
+    username: this.props.account.currentUser.username,
+    email: this.props.account.currentUser.email
+  }
+  
+  console.log('submitOrder: ' + JSON.stringify(updated))
+  this.setState({
+    showModal: false
+  })
+}
   
   render(){
     const items = this.props.item.all || []
@@ -121,9 +150,12 @@ onPurchase(item, event){
             </div>
           </div>  
           
-          <Modal bsSize="sm" show={this.state.showModal} onHide={ () => {this.setState({showModal:false})} }>
+          <Modal bsSize="mg" show={this.state.showModal} onHide={ () => {this.setState({showModal:false})} }>
             <Modal.Body style={localStyle.modal}>
-                <h2> This is a modal. Woo awesome </h2>
+                <h3> Send a request message for spot location </h3>
+                <hr />
+                <textarea onChange={this.updateOrder.bind(this)} style={localStyle.textarea} placeholder="Enter Message Here" className="form-control"></textarea>
+                <button onClick={this.submitOrder.bind(this)} className="btn btn-success btn-fill">Send Message!</button>
             </Modal.Body>  
           </Modal>  
           
@@ -136,6 +168,11 @@ const localStyle = {
   input:{
     border: '1px solid #ddd',
     marginBottom:12
+  },
+  textarea: {
+    border: '1px solid #ddd',
+    height: 160,
+    marginBottom: 16
   }
 }
 
