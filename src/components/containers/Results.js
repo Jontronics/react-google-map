@@ -114,7 +114,7 @@ submitOrder(){
     email: this.props.account.currentUser.email
   }
   
-  console.log('submitOrder: ' + JSON.stringify(updated))
+  // console.log('submitOrder: ' + JSON.stringify(updated))
   this.props.submitOrder(updated)
   .then(data => {
     // alert('You have sent a message!')
@@ -123,7 +123,7 @@ submitOrder(){
     // })  
     const email = {
       fromemail: 'j.aquarone@gmail.com',
-      fromname: ' Skate App',
+      fromname: 'j.aquarone',
       subject: 'You got a new message',
       content: updated.message,
       recipient: 'j.aquarone@gmail.com'

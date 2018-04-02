@@ -18,7 +18,7 @@ export default (props) => {
                         </div>
                     </div>  
                     <div className="col-xs-12">
-                      <a onClick={props.onPurchase.bind(this)} href="#">
+                      <a href="#">
                         <img style={localStyle.itemImage} src={item.image} />  
                       </a>
                     </div>    
@@ -30,6 +30,9 @@ export default (props) => {
                         <i className="ti-rocket"></i> 
                           {item.seller.username}
                     </div>
+                    
+                    <button onClick={props.onPurchase.bind(this)} className="btn btn-success btn-outlined btn-primary" style={{borderRadius:0, float:'right', padding:5}}>send a message</button>
+                    
                 </div>
             </div>
         </div>
@@ -42,7 +45,8 @@ const localStyle = {
   itemImage: {
     width:100+'%', 
     padding:3, 
-    border:'1px solid #F1EAE1'
+    border:'1px solid #F1EAE1',
+    marginBottom:12
   }
 }
 

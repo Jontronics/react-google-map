@@ -57,7 +57,7 @@ router.post('/send', function(req, res){
   })
   .catch(err => {
     res.json({
-      confirmation: 'fail'
+      confirmation: 'fail',
       message:err.message
     })
   })
