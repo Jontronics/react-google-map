@@ -17,6 +17,18 @@ addItem: (item) => {
 		}
 	},
 	
+	submitOrder: (order) => {
+		return dispatch => {
+				return dispatch(HTTPAsync.post('/api/order', order, null))
+		}
+	},
+	
+	sendEmail: (email) => {
+		return dispatch => {
+				return dispatch(HTTPAsync.post('/email/send', email, null))
+		}
+	},
+	
 	locationChanged: (location) => {
 		return {
 			type: constants.LOCATION_CHANGED,

@@ -115,9 +115,35 @@ submitOrder(){
   }
   
   console.log('submitOrder: ' + JSON.stringify(updated))
-  this.setState({
-    showModal: false
+  this.props.submitOrder(updated)
+  .then(data => {
+    // alert('You have sent a message!')
+    // this.setState({
+    //   showModal: false
+    // })  
+    const email = {
+      fromemail: 'j.aquarone@gmail.com',
+      fromname: ' Skate App',
+      subject: 'You got a new message',
+      content: updated.message,
+      recipient: 'j.aquarone@gmail.com'
+      
+    }
+    
+    return this.props.sendEmail(email)
   })
+  .then(data => {
+    alert('You have sent a message!')
+    this.setState({
+      showModal: false
+    })    
+  })
+  .catch(err => {
+    alert('OOPS: ' + err.message)
+  })
+  // this.setState({
+  //   showModal: false
+  // })
 }
   
   render(){
@@ -187,10 +213,23 @@ const stateToProps = (state) => {
 const dispatchToProps = (dispatch) => {
   return {
       addItem: (item) => dispatch(actions.addItem(item)),
-      fetchItems: (params) => dispatch(actions.fetchItems(params))
+      fetchItems: (params) => dispatch(actions.fetchItems(params)),
+      submitOrder: (order) => dispatch(actions.submitOrder(order)),
+      sendEmail: (email) => dispatch(actions.sendEmail(email))
+
   }
 }
 
 export default connect(stateToProps, dispatchToProps)(Results)
+
+
+
+
+
+
+
+
+
+
 
 
