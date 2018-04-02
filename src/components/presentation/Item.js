@@ -7,7 +7,7 @@ export default (props) => {
   
   
   return (
-    <div className="col-lg-3 col-sm-6">
+    <div className="col-lg-6 col-sm-6">
         <div className="card">
             <div className="content">
                 <div className="row">  
@@ -23,7 +23,7 @@ export default (props) => {
                 </div>
                 <div className="footer">
                     <hr />
-                      <img style={localStyle.icon}  src={item.seller.image} />
+                      <img style={localStyle.icon}   />
                     <div className="stats">
                         <i className="ti-rocket"></i> 
                           {item.seller.username}

@@ -13,12 +13,13 @@ module.exports = {
 	addItem: function (item) {
 		return function (dispatch) {
 			return dispatch(HTTPAsync.post("/api/item", item, constants.ITEM_ADDED));
-		}
-		// return {
-		// 	type: constants.ITEM_ADDED,
-		// 	data: item
-		// }
-		;
+		};
+	},
+
+	fetchItems: function (params) {
+		return function (dispatch) {
+			return dispatch(HTTPAsync.get("/api/item", params, constants.ITEMS_RECEIVED));
+		};
 	},
 
 	locationChanged: function (location) {

@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import actions from '../../actions'
 import turbo from 'turbo360'
 
+
+
 class Results extends Component {
   constructor(){
     super()
@@ -91,14 +93,12 @@ uploadImage(files){
           </div>
           
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-6">
               <div className="card">
                   <div className="content">  
                       <div className="footer">
                         <h3>Add New Skate Spot</h3>
-                        
                           <input onChange={this.updateItem.bind(this, 'name')} type="text"  style={localStyle.input} className="form-control" placeholder="Name"/>
-                          <input onChange={this.updateItem.bind(this, 'price')} type="text" style={localStyle.input} className="form-control" placeholder="# for now not sure why i did this"/> 
                             { (this.state.item.image == null) ? null : <img src={this.state.item.image+'=s120-c'} /> }
                           <hr />
                           <div className="stats">

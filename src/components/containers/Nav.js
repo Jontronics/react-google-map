@@ -15,42 +15,17 @@ class Nav extends Component {
                         <span className="icon-bar bar2"></span>
                         <span className="icon-bar bar3"></span>
                     </button>
-                    <a className="navbar-brand" href="#">This is a Skate App dude</a>
+                    <a className="navbar-brand">Skate.spots</a>
                 </div>
                 <div className="collapse navbar-collapse">
-                    <ul className="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-                                <i className="ti-panel"></i>
-                <p>Stats</p>
-                            </a>
-                        </li>
-                        <li className="dropdown">
-                              <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-                                    <i className="ti-bell"></i>
-                                    <p className="notification">5</p>
-                  <p>Notifications</p>
-                  <b className="caret"></b>
-                              </a>
-                              <ul className="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
-                        </li>
-            <li>
-                            <a href="#">
-                { (currentUser == null) ? null : <p>Welcome {currentUser.username}</p> }
-                
-                            </a>
-                        </li>
+                    <ul className="nav navbar-nav navbar-right">  
+                      <li>
+                      <a href="#"> { (currentUser == null) ? null : <p>Welcome {currentUser.username}</p> } </a>
+                      </li>
                     </ul>
-
                 </div>
             </div>
-        </nav>  
+        </nav>      
     )  
   }  
 }

@@ -36,6 +36,13 @@ var Results = (function (Component) {
   _inherits(Results, Component);
 
   _prototypeProperties(Results, null, {
+    componentDidMount: {
+      value: function componentDidMount() {
+        this.props.fetchItems();
+      },
+      writable: true,
+      configurable: true
+    },
     updateItem: {
       value: function updateItem(attr, event) {
         event.preventDefault();
@@ -51,21 +58,33 @@ var Results = (function (Component) {
     },
     addItem: {
       value: function addItem() {
-        console.log("ADD ITEM: " + JSON.stringify(this.state.item));
+        if (this.props.account.currentUser == null) {
+          alert("Please log in or register to post spots bruh");
+          return;
+        }
 
-        var newItem = Object.assign({}, this.state.item);
+        var currentUser = this.props.account.currentUser;
+        var updated = Object.assign({}, this.state.item);
+        updated.position = this.props.map.currentLocation;
+        updated.seller = {
+          id: currentUser.id,
+          username: currentUser.username,
+          image: currentUser.image || ""
+        };
 
-        var len = this.props.item.all.length + 1;
-        newItem.id = len.toString();
-        newItem.position = this.props.map.currentLocation;
-
-        this.props.addItem(newItem);
+        // console.log('ADD ITEM: ' + JSON.stringify(updated))
+        this.props.addItem(updated).then(function (data) {
+          console.log("ITEM ADDER: " + JSON.stringify(data));
+        })["catch"](function (er) {
+          console.log("ERROR: " + err.message);
+        });
       },
       writable: true,
       configurable: true
     },
     uploadImage: {
       value: function uploadImage(files) {
+        var _this = this;
         var image = files[0];
         console.log("uploadImage: " + image.name);
         var turboClient = turbo({
@@ -73,8 +92,15 @@ var Results = (function (Component) {
         });
 
         turboClient.uploadFile(image).then(function (data) {
-          console.log("FILE UPLOADED: " + JSON.stringify(data));
-        })["catch"](function (err) {});
+          // console.log('FILE UPLOADED: ' + data.result.url)
+          var updated = Object.assign({}, _this.state.item);
+          updated.image = data.result.url;
+          _this.setState({
+            item: updated
+          });
+        })["catch"](function (err) {
+          console.log("Upload ERROR: " + err.message);
+        });
       },
       writable: true,
       configurable: true
@@ -114,6 +140,7 @@ var Results = (function (Component) {
                     ),
                     React.createElement("input", { onChange: this.updateItem.bind(this, "name"), type: "text", style: localStyle.input, className: "form-control", placeholder: "Name" }),
                     React.createElement("input", { onChange: this.updateItem.bind(this, "price"), type: "text", style: localStyle.input, className: "form-control", placeholder: "# for now not sure why i did this" }),
+                    this.state.item.image == null ? null : React.createElement("img", { src: this.state.item.image + "=s120-c" }),
                     React.createElement("hr", null),
                     React.createElement(
                       "div",
@@ -154,7 +181,8 @@ var localStyle = {
 var stateToProps = function (state) {
   return {
     item: state.item,
-    map: state.map
+    map: state.map,
+    account: state.account
   };
 };
 
@@ -162,6 +190,9 @@ var dispatchToProps = function (dispatch) {
   return {
     addItem: function (item) {
       return dispatch(actions.addItem(item));
+    },
+    fetchItems: function (params) {
+      return dispatch(actions.fetchItems(params));
     }
   };
 };
