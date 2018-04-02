@@ -18,7 +18,9 @@ export default (props) => {
                         </div>
                     </div>  
                     <div className="col-xs-12">
-                      <img style={localStyle.itemImage} src={item.image} />  
+                      <a onClick={props.onPurchase.bind(this)} href="#">
+                        <img style={localStyle.itemImage} src={item.image} />  
+                      </a>
                     </div>    
                 </div>
                 <div className="footer">
@@ -37,12 +39,6 @@ export default (props) => {
 
 
 const localStyle = {
-  icon: {
-    width:28,
-    height:28, 
-    borderRadius:14, 
-    float:'right'
-  },
   itemImage: {
     width:100+'%', 
     padding:3, 

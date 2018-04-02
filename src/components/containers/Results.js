@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Item } from '../presentation'
 import  Dropzone from 'react-dropzone'
+import { Modal } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import actions from '../../actions'
 import turbo from 'turbo360'
@@ -11,6 +12,7 @@ class Results extends Component {
   constructor(){
     super()
     this.state = {
+      showModal: false,
       item: {
         // position: {lat:40.70224017, lng:-73.9796719} 
       }
@@ -80,6 +82,14 @@ uploadImage(files){
   })
   
 }
+
+onPurchase(item, event){
+  event.preventDefault()
+  this.setState({
+    showModal:true
+  })
+  console.log('onPurchase: ' + JSON.stringify(item))
+}
   
   render(){
     const items = this.props.item.all || []
@@ -87,29 +97,36 @@ uploadImage(files){
       <div className="container-fluid">
           <div className="row"> 
             { items.map((item, i) => {
-                  return <Item key={item.id} item={item} />
+                  return <Item key={item.id} onPurchase={this.onPurchase.bind(this, item)} item={item} />
                 }) 
             }                     
           </div>
-          
-          <div className="row">
-            <div className="col-md-6">
-              <div className="card">
+            <div className="row">
+              <div className="col-md-6">
+                <div className="card">
                   <div className="content">  
                       <div className="footer">
                         <h3>Add New Skate Spot</h3>
                           <input onChange={this.updateItem.bind(this, 'name')} type="text"  style={localStyle.input} className="form-control" placeholder="Name"/>
                             { (this.state.item.image == null) ? null : <img src={this.state.item.image+'=s120-c'} /> }
                           <hr />
-                          <div className="stats">
-                              <Dropzone onDrop={this.uploadImage.bind(this)}  className="btn btn-info btn-fill" style={{marginRight:16}} >Add Pick</Dropzone>
-                              <button onClick={this.addItem.bind(this)} className="btn btn-success">Add Spot</button>
+                          <div className="stats">                                 
+                                              
+                              <Dropzone onDrop={this.uploadImage.bind(this)}  className="btn btn-success" style={{marginRight:36}} >Add Pick</Dropzone>
+                              <button onClick={this.addItem.bind(this)} className="btn btn-outlined btn-primary" style={{borderRadius:0}}>Add Spot</button>
                           </div>
                       </div>
                   </div>
               </div>
             </div>
           </div>  
+          
+          <Modal bsSize="sm" show={this.state.showModal} onHide={ () => {this.setState({showModal:false})} }>
+            <Modal.Body style={localStyle.modal}>
+                <h2> This is a modal. Woo awesome </h2>
+            </Modal.Body>  
+          </Modal>  
+          
       </div>  
     )  
   }
