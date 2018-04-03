@@ -30,9 +30,7 @@ export default (props) => {
                         <i className="ti-rocket"></i> 
                           {item.seller.username}
                     </div>
-                    
-                    <button onClick={props.onPurchase.bind(this)} className="btn btn-success btn-outlined btn-primary" style={{borderRadius:0, float:'right', padding:5}}>send a message</button>
-                    
+                    <button onClick={props.onPurchase.bind(this)} className="btn btn-success btn-outlined btn-primary" style={{borderRadius:0, float:'right', padding:5}}>send a message</button>  
                 </div>
             </div>
         </div>
