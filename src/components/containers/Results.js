@@ -8,6 +8,7 @@ import turbo from 'turbo360'
 
 
 
+
 class Results extends Component {
   constructor(){
     super()
@@ -42,7 +43,13 @@ addItem(){
   
   if (this.props.account.currentUser == null){
     alert('Please log in or register to post spots bruh')
-    return
+  if (window.confirm)  {
+    window.location = '/auth';
+  }
+    
+    return 
+    
+    
   }
   
   const currentUser = this.props.account.currentUser
