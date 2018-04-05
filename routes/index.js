@@ -11,5 +11,10 @@ router.get('/auth', function(req, res){
 	res.render('auth',null)
 })
 
+router.get('/landing', function(req, res){
+	res.render('landing', null)
+})
+
+
 
 module.exports = router

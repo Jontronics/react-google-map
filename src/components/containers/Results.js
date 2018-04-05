@@ -5,6 +5,8 @@ import { Modal } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import actions from '../../actions'
 import turbo from 'turbo360'
+import swal from 'sweetalert'
+
 
 
 
@@ -42,14 +44,12 @@ updateItem(attr, event){
 addItem(){
   
   if (this.props.account.currentUser == null){
+    // swal("Hello world!")
     alert('Please log in or register to post spots bruh')
   if (window.confirm)  {
     window.location = '/auth';
-  }
-    
+  }  
     return 
-    
-    
   }
   
   const currentUser = this.props.account.currentUser
