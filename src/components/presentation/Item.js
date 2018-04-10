@@ -13,7 +13,7 @@ export default (props) => {
                 <div className="row">  
                     <div className="col-xs-12">
                         <div className="numbers">
-                            <p>{item.name}</p>
+                            <p style={localStyle.pText}>{item.name}</p>
                             {item.price}
                         </div>
                     </div>  
@@ -31,6 +31,7 @@ export default (props) => {
                           {item.seller.username}
                     </div>
                     <button onClick={props.onPurchase.bind(this)} className="btn btn-success btn-outlined btn-primary" style={{borderRadius:0, float:'right', padding:5}}>send a message</button>  
+
                 </div>
             </div>
         </div>
@@ -45,6 +46,9 @@ const localStyle = {
     padding:3, 
     border:'1px solid #F1EAE1',
     marginBottom:12
+  },
+  pText: {
+    padding:6
   }
 }
 

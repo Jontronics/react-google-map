@@ -2,12 +2,14 @@
 const turbo = require('turbo360')({site_id: process.env.TURBO_APP_ID})
 const vertex = require('vertex360')({site_id: process.env.TURBO_APP_ID})
 const router = vertex.router()
+var helper = require('sendgrid').mail;
+const async = require('async');
 
 
 router.post('/send', function(req, res){
-	
+
   const email = req.body
-  
+
   if (email.fromemail == null){
     res.json({
       confirmation: 'fail',
@@ -15,7 +17,7 @@ router.post('/send', function(req, res){
     })
     return
   }
-  
+
   if (email.fromname == null){
     res.json({
       confirmation: 'fail',
@@ -23,7 +25,7 @@ router.post('/send', function(req, res){
     })
     return
   }
-  
+
   if (email.recipient == null){
     res.json({
       confirmation: 'fail',
@@ -31,7 +33,7 @@ router.post('/send', function(req, res){
     })
     return
   }
-  
+
   if (email.content == null){
     res.json({
       confirmation: 'fail',
@@ -39,7 +41,7 @@ router.post('/send', function(req, res){
     })
     return
   }
-  
+
   if (email.subject == null){
     res.json({
       confirmation: 'fail',
@@ -47,7 +49,7 @@ router.post('/send', function(req, res){
     })
     return
   }
-  
+
   turbo.sendEmail(email)
   .then(data => {
     res.json({
@@ -61,17 +63,16 @@ router.post('/send', function(req, res){
       message:err.message
     })
   })
-  // res.render('auth',null)
 })
 
 
-// router.get('/', function(req, res){
-// 	res.render('index', {text: 'This is the dynamic data. Open index.js from the routes directory to see.'})
-// })
-// 
-// router.get('/auth', function(req, res){
-// 	res.render('auth',null)
-// })
+router.get('/', function(req, res){
+	res.render('index', {text: 'This is the dynamic data. Open index.js from the routes directory to see.'})
+})
+
+router.get('/auth', function(req, res){
+	res.render('auth',null)
+})
 
 
 module.exports = router

@@ -129,11 +129,11 @@ submitOrder(){
     //   showModal: false
     // })  
     const email = {
-      fromemail: 'j.aquarone@gmail.com',
-      fromname: 'j.aquarone',
+      fromemail: 'jonskatapp@gmail.com',
+      fromname: 'jonskatapp@gmail.com',
       subject: 'You got a new message',
       content: updated.message,
-      recipient: 'j.aquarone@gmail.com'
+      recipient: 'jonskatapp@gmail.com'
       
     }
     
@@ -185,10 +185,15 @@ submitOrder(){
           
           <Modal bsSize="mg" show={this.state.showModal} onHide={ () => {this.setState({showModal:false})} }>
             <Modal.Body style={localStyle.modal}>
+              
                 <h3> Send a request message for spot location </h3>
+              
                 <hr />
-                <textarea onChange={this.updateOrder.bind(this)} style={localStyle.textarea} placeholder="Enter Message Here" className="form-control"></textarea>
-                <button onClick={this.submitOrder.bind(this)} className="btn btn-success btn-fill">Send Message!</button>
+                <textarea id="textarea" method="POST" action="send"  onChange={this.updateOrder.bind(this)} style={localStyle.textarea} placeholder="Enter Message Here" className="form-control"></textarea>
+                <button type="submit" onClick={this.submitOrder.bind(this)} className="btn btn-success btn-fill">Send Message!</button>
+                
+                
+
             </Modal.Body>  
           </Modal>  
           
