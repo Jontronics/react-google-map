@@ -24,7 +24,7 @@ module.exports = function (_x, action) {
       console.log("ITEM ADDED: " + JSON.stringify(payload.data));
 
       var all = Object.assign([], updated.all);
-      all.push(payload.data);
+      all.unshift(payload.data);
       updated.all = all;
 
       return updated;

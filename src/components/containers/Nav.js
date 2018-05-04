@@ -15,19 +15,16 @@ class Nav extends Component {
                         <span className="icon-bar bar2"></span>
                         <span className="icon-bar bar3"></span>
                     </button>
-                    <a className="navbar-brand">Pro Spots</a>
+                    <a className="navbar-brand">Occupi Walls</a>
                 </div>
                 
                 <div className="collapse navbar-collapse">
                     <ul className="nav navbar-nav navbar-right">  
                       <li>
-                      <a href="#"> { (currentUser == null) ? null : <p>Welcome {currentUser.username}</p> } </a>
+                      <a href="#"> { (currentUser == null) ? null : <p>Welcome Landlord {currentUser.username}</p> } </a>
                       </li>
                       
                       <li class="dropdown">
-                          <a href="#gaia" class="dropdown-toggle btn" data-toggle="dropdown">
-                              <i class="fa fa-share-alt"></i> Lets connect
-                          </a>
                           <ul class="dropdown-menu dropdown-danger">
                               <li>
                                   <a href="#"><i class="fa fa-linkedin-square"></i> LinkedIn</a>

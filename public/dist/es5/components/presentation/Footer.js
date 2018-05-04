@@ -25,26 +25,8 @@ module.exports = function (props) {
                         null,
                         React.createElement(
                             "a",
-                            { href: "http://www.creative-tim.com" },
-                            "Creative Tim"
-                        )
-                    ),
-                    React.createElement(
-                        "li",
-                        null,
-                        React.createElement(
-                            "a",
-                            { href: "http://blog.creative-tim.com" },
-                            "Blog"
-                        )
-                    ),
-                    React.createElement(
-                        "li",
-                        null,
-                        React.createElement(
-                            "a",
-                            { href: "http://www.creative-tim.com/license" },
-                            "Licenses"
+                            { href: "https://www.turbo360.co/" },
+                            "Props to TURBO 360!!"
                         )
                     )
                 )
@@ -57,8 +39,8 @@ module.exports = function (props) {
                 " by ",
                 React.createElement(
                     "a",
-                    { href: "http://www.creative-tim.com" },
-                    "Creative Tim"
+                    { href: "" },
+                    "Jonathan Aquarone"
                 )
             )
         )

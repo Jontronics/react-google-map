@@ -22,6 +22,18 @@ module.exports = {
 		};
 	},
 
+	submitOrder: function (order) {
+		return function (dispatch) {
+			return dispatch(HTTPAsync.post("/api/order", order, null));
+		};
+	},
+
+	sendEmail: function (email) {
+		return function (dispatch) {
+			return dispatch(HTTPAsync.post("/email/send", email, null));
+		};
+	},
+
 	locationChanged: function (location) {
 		return {
 			type: constants.LOCATION_CHANGED,

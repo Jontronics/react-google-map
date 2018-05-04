@@ -15,7 +15,7 @@ module.exports = function (props) {
 
   return React.createElement(
     "div",
-    { className: "col-lg-3 col-sm-6" },
+    { className: "col-lg-6 col-sm-6" },
     React.createElement(
       "div",
       { className: "card" },
@@ -33,7 +33,7 @@ module.exports = function (props) {
               { className: "numbers" },
               React.createElement(
                 "p",
-                null,
+                { style: localStyle.pText },
                 item.name
               ),
               item.price
@@ -42,19 +42,28 @@ module.exports = function (props) {
           React.createElement(
             "div",
             { className: "col-xs-12" },
-            React.createElement("img", { style: localStyle.itemImage, src: item.image })
+            React.createElement(
+              "a",
+              { href: "#" },
+              React.createElement("img", { style: localStyle.itemImage, src: item.image })
+            )
           )
         ),
         React.createElement(
           "div",
           { className: "footer" },
           React.createElement("hr", null),
-          React.createElement("img", { style: localStyle.icon, src: item.seller.image }),
+          React.createElement("img", { style: localStyle.icon }),
           React.createElement(
             "div",
             { className: "stats" },
             React.createElement("i", { className: "ti-rocket" }),
             item.seller.username
+          ),
+          React.createElement(
+            "button",
+            { onClick: props.onPurchase.bind(undefined), className: "btn btn-success btn-outlined btn-primary", style: { borderRadius: 0, float: "right", padding: 5 } },
+            "send a message"
           )
         )
       )
@@ -66,15 +75,13 @@ module.exports = function (props) {
 
 
 var localStyle = {
-  icon: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    float: "right"
-  },
   itemImage: {
     width: 100 + "%",
     padding: 3,
-    border: "1px solid #F1EAE1"
+    border: "1px solid #F1EAE1",
+    marginBottom: 12
+  },
+  pText: {
+    padding: 6
   }
 };

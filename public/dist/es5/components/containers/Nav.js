@@ -52,8 +52,8 @@ var Nav = (function (Component) {
                             ),
                             React.createElement(
                                 "a",
-                                { className: "navbar-brand", href: "#" },
-                                "This is a Skate App dude"
+                                { className: "navbar-brand" },
+                                "Pro Spots"
                             )
                         ),
                         React.createElement(
@@ -67,95 +67,58 @@ var Nav = (function (Component) {
                                     null,
                                     React.createElement(
                                         "a",
-                                        { href: "#", className: "dropdown-toggle", "data-toggle": "dropdown" },
-                                        React.createElement("i", { className: "ti-panel" }),
-                                        React.createElement(
-                                            "p",
-                                            null,
-                                            "Stats"
-                                        )
-                                    )
-                                ),
-                                React.createElement(
-                                    "li",
-                                    { className: "dropdown" },
-                                    React.createElement(
-                                        "a",
-                                        { href: "#", className: "dropdown-toggle", "data-toggle": "dropdown" },
-                                        React.createElement("i", { className: "ti-bell" }),
-                                        React.createElement(
-                                            "p",
-                                            { className: "notification" },
-                                            "5"
-                                        ),
-                                        React.createElement(
-                                            "p",
-                                            null,
-                                            "Notifications"
-                                        ),
-                                        React.createElement("b", { className: "caret" })
-                                    ),
-                                    React.createElement(
-                                        "ul",
-                                        { className: "dropdown-menu" },
-                                        React.createElement(
-                                            "li",
-                                            null,
-                                            React.createElement(
-                                                "a",
-                                                { href: "#" },
-                                                "Notification 1"
-                                            )
-                                        ),
-                                        React.createElement(
-                                            "li",
-                                            null,
-                                            React.createElement(
-                                                "a",
-                                                { href: "#" },
-                                                "Notification 2"
-                                            )
-                                        ),
-                                        React.createElement(
-                                            "li",
-                                            null,
-                                            React.createElement(
-                                                "a",
-                                                { href: "#" },
-                                                "Notification 3"
-                                            )
-                                        ),
-                                        React.createElement(
-                                            "li",
-                                            null,
-                                            React.createElement(
-                                                "a",
-                                                { href: "#" },
-                                                "Notification 4"
-                                            )
-                                        ),
-                                        React.createElement(
-                                            "li",
-                                            null,
-                                            React.createElement(
-                                                "a",
-                                                { href: "#" },
-                                                "Another notification"
-                                            )
-                                        )
-                                    )
-                                ),
-                                React.createElement(
-                                    "li",
-                                    null,
-                                    React.createElement(
-                                        "a",
                                         { href: "#" },
+                                        " ",
                                         currentUser == null ? null : React.createElement(
                                             "p",
                                             null,
                                             "Welcome ",
                                             currentUser.username
+                                        ),
+                                        " "
+                                    )
+                                ),
+                                React.createElement(
+                                    "li",
+                                    { "class": "dropdown" },
+                                    React.createElement(
+                                        "a",
+                                        { href: "#gaia", "class": "dropdown-toggle btn", "data-toggle": "dropdown" },
+                                        React.createElement("i", { "class": "fa fa-share-alt" }),
+                                        " Lets connect"
+                                    ),
+                                    React.createElement(
+                                        "ul",
+                                        { "class": "dropdown-menu dropdown-danger" },
+                                        React.createElement(
+                                            "li",
+                                            null,
+                                            React.createElement(
+                                                "a",
+                                                { href: "#" },
+                                                React.createElement("i", { "class": "fa fa-linkedin-square" }),
+                                                " LinkedIn"
+                                            )
+                                        ),
+                                        React.createElement(
+                                            "li",
+                                            null,
+                                            React.createElement(
+                                                "a",
+                                                { href: "#" },
+                                                React.createElement("i", { "class": "fa fa-twitter" }),
+                                                " Twitter"
+                                            )
+                                        ),
+                                        React.createElement(
+                                            "li",
+                                            null,
+                                            React.createElement(
+                                                "a",
+                                                { href: "#" },
+                                                React.createElement("i", { "class": "fa fa-instagram" }),
+                                                " Instagram"
+                                            )
                                         )
                                     )
                                 )

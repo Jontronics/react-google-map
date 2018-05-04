@@ -18,10 +18,13 @@ var Component = _react.Component;
 var Item = require("../presentation").Item;
 var Dropzone = _interopRequire(require("react-dropzone"));
 
+var Modal = require("react-bootstrap").Modal;
 var connect = require("react-redux").connect;
 var actions = _interopRequire(require("../../actions"));
 
 var turbo = _interopRequire(require("turbo360"));
+
+var swal = _interopRequire(require("sweetalert"));
 
 var Results = (function (Component) {
   function Results() {
@@ -29,7 +32,10 @@ var Results = (function (Component) {
 
     _get(Object.getPrototypeOf(Results.prototype), "constructor", this).call(this);
     this.state = {
-      item: {}
+      showModal: false,
+      item: {},
+      order: {}
+
     };
   }
 
@@ -59,7 +65,11 @@ var Results = (function (Component) {
     addItem: {
       value: function addItem() {
         if (this.props.account.currentUser == null) {
+          // swal("Hello world!")
           alert("Please log in or register to post spots bruh");
+          if (window.confirm) {
+            window.location = "/auth";
+          }
           return;
         }
 
@@ -105,8 +115,72 @@ var Results = (function (Component) {
       writable: true,
       configurable: true
     },
+    onPurchase: {
+      value: function onPurchase(item, event) {
+        event.preventDefault();
+        this.setState({
+          showModal: true
+        });
+        console.log("onPurchase: " + JSON.stringify(item));
+      },
+      writable: true,
+      configurable: true
+    },
+    updateOrder: {
+      value: function updateOrder(event) {
+        console.log("updateOrder: " + event.target.value);
+        var updated = Object.assign({}, this.state.order);
+        updated.message = event.target.value;
+        this.setState({
+          order: updated
+        });
+      },
+      writable: true,
+      configurable: true
+    },
+    submitOrder: {
+      value: function submitOrder() {
+        var _this = this;
+        var updated = Object.assign({}, this.state.order);
+        updated.item = this.state.selectedItem;
+
+        updated.buyer = {
+          id: this.props.account.currentUser.id,
+          username: this.props.account.currentUser.username,
+          email: this.props.account.currentUser.email
+        };
+
+        // console.log('submitOrder: ' + JSON.stringify(updated))
+        this.props.submitOrder(updated).then(function (data) {
+          // alert('You have sent a message!')
+          // this.setState({
+          //   showModal: false
+          // }) 
+          var email = {
+            fromemail: "jonskatapp@gmail.com",
+            fromname: "jonskatapp@gmail.com",
+            subject: "You got a new message",
+            content: updated.message,
+            recipient: "jonskatapp@gmail.com"
+
+          };
+
+          return _this.props.sendEmail(email);
+        }).then(function (data) {
+          alert("You have sent a message!");
+          _this.setState({
+            showModal: false
+          });
+        })["catch"](function (err) {
+          alert("OOPS: " + err.message);
+        });
+      },
+      writable: true,
+      configurable: true
+    },
     render: {
       value: function render() {
+        var _this = this;
         var items = this.props.item.all || [];
         return React.createElement(
           "div",
@@ -115,7 +189,7 @@ var Results = (function (Component) {
             "div",
             { className: "row" },
             items.map(function (item, i) {
-              return React.createElement(Item, { key: item.id, item: item });
+              return React.createElement(Item, { key: item.id, onPurchase: _this.onPurchase.bind(_this, item), item: item });
             })
           ),
           React.createElement(
@@ -123,7 +197,7 @@ var Results = (function (Component) {
             { className: "row" },
             React.createElement(
               "div",
-              { className: "col-md-4" },
+              { className: "col-md-6" },
               React.createElement(
                 "div",
                 { className: "card" },
@@ -139,7 +213,6 @@ var Results = (function (Component) {
                       "Add New Skate Spot"
                     ),
                     React.createElement("input", { onChange: this.updateItem.bind(this, "name"), type: "text", style: localStyle.input, className: "form-control", placeholder: "Name" }),
-                    React.createElement("input", { onChange: this.updateItem.bind(this, "price"), type: "text", style: localStyle.input, className: "form-control", placeholder: "# for now not sure why i did this" }),
                     this.state.item.image == null ? null : React.createElement("img", { src: this.state.item.image + "=s120-c" }),
                     React.createElement("hr", null),
                     React.createElement(
@@ -147,17 +220,39 @@ var Results = (function (Component) {
                       { className: "stats" },
                       React.createElement(
                         Dropzone,
-                        { onDrop: this.uploadImage.bind(this), className: "btn btn-info btn-fill", style: { marginRight: 16 } },
+                        { onDrop: this.uploadImage.bind(this), className: "btn btn-success", style: { marginRight: 36 } },
                         "Add Pick"
                       ),
                       React.createElement(
                         "button",
-                        { onClick: this.addItem.bind(this), className: "btn btn-success" },
+                        { onClick: this.addItem.bind(this), className: "btn btn-outlined btn-primary", style: { borderRadius: 0 } },
                         "Add Spot"
                       )
                     )
                   )
                 )
+              )
+            )
+          ),
+          React.createElement(
+            Modal,
+            { bsSize: "mg", show: this.state.showModal, onHide: function () {
+                _this.setState({ showModal: false });
+              } },
+            React.createElement(
+              Modal.Body,
+              { style: localStyle.modal },
+              React.createElement(
+                "h3",
+                null,
+                " Send a request message for spot location "
+              ),
+              React.createElement("hr", null),
+              React.createElement("textarea", { id: "textarea", method: "POST", action: "send", onChange: this.updateOrder.bind(this), style: localStyle.textarea, placeholder: "Enter Message Here", className: "form-control" }),
+              React.createElement(
+                "button",
+                { type: "submit", onClick: this.submitOrder.bind(this), className: "btn btn-success btn-fill" },
+                "Send Message!"
               )
             )
           )
@@ -175,6 +270,11 @@ var localStyle = {
   input: {
     border: "1px solid #ddd",
     marginBottom: 12
+  },
+  textarea: {
+    border: "1px solid #ddd",
+    height: 160,
+    marginBottom: 16
   }
 };
 
@@ -193,9 +293,19 @@ var dispatchToProps = function (dispatch) {
     },
     fetchItems: function (params) {
       return dispatch(actions.fetchItems(params));
+    },
+    submitOrder: function (order) {
+      return dispatch(actions.submitOrder(order));
+    },
+    sendEmail: function (email) {
+      return dispatch(actions.sendEmail(email));
     }
+
   };
 };
 
 module.exports = connect(stateToProps, dispatchToProps)(Results);
 // position: {lat:40.70224017, lng:-73.9796719}
+// this.setState({
+//   showModal: false
+// })
